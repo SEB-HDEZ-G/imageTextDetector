@@ -48,8 +48,8 @@ for i, img in enumerate(imgGroup):
     cv.imwrite(f"filteredBlackImg{i+1}.jpg", imgFiltered)
 
 #STEP 4 - reading the text from the image with easyOCR
-reader = easyocr.Reader(['es']) #spanish
-reader2 = easyocr.Reader(['es']) #spanish
+reader = easyocr.Reader(["es"]) #spanish
+reader2 = easyocr.Reader(["es"]) #spanish
 
 #read text from image
 result = reader.readtext("./ImageTextDetector/filteredBlackImg1.jpg")
@@ -64,5 +64,8 @@ for (bbox, text, prob) in result2:
     print(f"Text: {text}, Detection confidence: {prob}")
     
 #python convention changes:
-#1 - limited characters per line to 72 characters (only applied for comments and docstrings)
+#1 - limited characters per line to 72 characters
+# (only applied for comments and docstrings)
 #2 - surrounded function definitions with two blank lines
+#3 - applied consistency for string quotes
+# (always using double quotes, unless special case)

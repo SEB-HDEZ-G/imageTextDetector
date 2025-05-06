@@ -3,6 +3,7 @@ import cv2 as cv
 from matplotlib import pyplot as plt
 import easyocr
 
+
 #Gaussian filter function
 def gaussianFilter(img, kernelSize, sigma=0):
     """
@@ -15,6 +16,7 @@ def gaussianFilter(img, kernelSize, sigma=0):
     """
     
     return cv.GaussianBlur(img, (kernelSize, kernelSize), sigma)
+
 
 #STEP 1 - image reading
 img = cv.imread("./ImageTextDetector/placa_q.jpg")
@@ -62,4 +64,5 @@ for (bbox, text, prob) in result2:
     print(f"Text: {text}, Detection confidence: {prob}")
     
 #python convention changes:
-#1 - limited characters per line to 72 characters
+#1 - limited characters per line to 72 characters (only applied for comments and docstrings)
+#2 - surrounded function definitions with two blank lines

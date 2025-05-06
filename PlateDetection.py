@@ -8,8 +8,10 @@ def gaussianFilter(img, kernelSize, sigma=0):
     """
     The Gaussian filter talkes as parameters:
     - img: Input image (can be grayscale or color, but I'm using grayscale)
-    - kernelSize: Size of the Gaussian kernel (must be odd), larger kernel gives a stronger blur
-    - sigma: Standard deviation (how much smoothing is applied), gets handled automatically by OpenCV if the value is 0
+    - kernelSize: Size of the Gaussian kernel (must be odd), larger kernel
+      gives a stronger blur
+    - sigma: Standard deviation (how much smoothing is applied), gets
+      handled automatically by OpenCV if the value is 0
     """
     
     return cv.GaussianBlur(img, (kernelSize, kernelSize), sigma)
@@ -18,7 +20,8 @@ def gaussianFilter(img, kernelSize, sigma=0):
 img = cv.imread("./ImageTextDetector/placa_q.jpg")
 img2 = cv.imread("./ImageTextDetector/placa_2.jpg")
 imgGroup = [img, img2]
-#grayscale conversion can't be used for HSV color filtering, but cv.IMREAD_GRAYSCALE would be used otherwise
+#grayscale conversion can't be used for HSV color filtering, but
+# cv.IMREAD_GRAYSCALE would be used otherwise
 
 #STEPS 2 & 3 - filter white from image and apply Gaussian filter
 for i, img in enumerate(imgGroup):
@@ -31,10 +34,12 @@ for i, img in enumerate(imgGroup):
     lowerBound = np.array([0, 0, 200])
     upperBound = np.array([180, 30, 255])
     
-    #binary mask, white pixels (255) represent the color within the defined range, black pixels (0) represent the rest
+    #binary mask, white pixels (255) represent the color within the defined
+    # range, black pixels (0) represent the rest
     mask = cv.inRange(imgHSV, lowerBound, upperBound)
     
-    #image filtering, applies the mask to the original image, keeps only the pixels that fall within the color range
+    #image filtering, applies the mask to the original image, keeps only the
+    # pixels that fall within the color range
     imgFiltered = cv.bitwise_and(img, img, mask=mask)
     
     #store image
@@ -52,6 +57,9 @@ result2 = reader.readtext("./ImageTextDetector/filteredBlackImg2.jpg")
 for (bbox, text, prob) in result:
     print(f"Text: {text}, Detection confidence: {prob}")
     
-#print the extracted text with confidence rate
+#print the second extracted text with confidence rate
 for (bbox, text, prob) in result2:
     print(f"Text: {text}, Detection confidence: {prob}")
+    
+#python convention changes:
+#1 - limited characters per line to 72 characters
